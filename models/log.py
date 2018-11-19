@@ -3,9 +3,10 @@ from datetime import datetime
 
 
 class Logger(object):
-    def __init__(self, directory, file_name):
+    def __init__(self, directory):
+        self.file_name = "video_scanner.log"
         self.dir = directory
-        self.file = self.dir + file_name
+        self.file = self.dir + self.file_name
         self.version = "0.1"
 
     @staticmethod
