@@ -1,23 +1,13 @@
 import os
 import sys
-import re
-import subprocess
-import time
 from datetime import datetime
 from models.files import FileHandeler
-# from models.files import FileHandeler
 
 version = "0.1"
 log_file = "video_scanner.log"
 args = sys.argv
 dir = args[1]
 file_handeler = FileHandeler(dir)
-
-# files = []
-# raw_files = os.listdir(dir)
-# for file in raw_files:
-#     if ".mp4" in file:
-#         files.append(file)
 
 log_file = dir + log_file
 timestamp = '{:%Y-%m-%d %H:%M}'.format(datetime.now())
