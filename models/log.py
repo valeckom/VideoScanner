@@ -25,6 +25,7 @@ class Logger(object):
         self.write(self._time_stamp())
 
     def header(self):
+        self._erase_log()
         msg = "Video Scanner v{}\n(c) Mark Valecko 2018".format(self.version)
         self._write(msg)
         self._write("{}\n".format(self._time_stamp()))
@@ -37,3 +38,7 @@ class Logger(object):
         msg = "\nProcess completed at {}".format(self._short_time_stamp())
         self._write(msg)
         self._write('')
+
+    def _erase_log(self):
+        with open(self.file, 'r+') as f:
+            f.truncate(0) # need '0' when using r+
