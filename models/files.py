@@ -8,7 +8,6 @@ class FileHandler(object):
         self.dir = directory
         self._check_valid_dir()
         self.files = []
-        self.file_types = [".mp4", ".mov", ".vob", ".mkv"]
         self.log = Logger(self.dir)
         self.extrack_list_of_video_files()
 
@@ -37,7 +36,8 @@ class FileHandler(object):
         exit(1)
 
     def _file_has_known_extension(self, file):
-        for file_type in self.file_types:
-            if file_type in file:
+        file_types = [".mp4", ".mov", ".vob", ".mkv"]
+        for file_type in file_types:
+            if file.endswith(file_type):
                 return True
         return False
