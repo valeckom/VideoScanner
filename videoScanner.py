@@ -10,8 +10,9 @@ log = Logger(dir)
 
 log.header()
 file_handeler = FileHandler(dir)
+file_list = file_handeler.get_clean_list()
 
-for file in file_handeler.get_clean_list():
+for file in file_list:
     log.note(file)
 
     file_lbl = file_handeler.make_py_compatable(dir + file)
