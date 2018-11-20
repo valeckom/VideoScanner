@@ -29,4 +29,8 @@ class FileHandeler(object):
         return self.files
 
     def make_py_compatable(self, file_name):
-        return file_name.replace(' ', "\ ")
+        new_name = file_name
+        spec_char = [' ', '(', ')']
+        for c in spec_char:
+            new_name = new_name.replace(c, "\\{}".format(c))
+        return new_name
