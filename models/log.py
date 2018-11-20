@@ -19,7 +19,7 @@ class Logger(object):
 
     def _write(self, content):
         print(content)
-        with open(self.file, 'a') as f:
+        with open(self.file, "at") as f:
             f.write('{}\n'.format(content))
 
     def time_date_stamp(self):
