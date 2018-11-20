@@ -53,3 +53,4 @@ class Logger(object):
     def _create_log(self):
         with open(self.file, 'w') as f:
             pass
+        print("created log file")
