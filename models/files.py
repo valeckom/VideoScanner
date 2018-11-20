@@ -2,6 +2,7 @@
 import os
 from models.log import Logger
 
+
 class FileHandeler(object):
     def __init__(self, directory):
         self.dir = directory
