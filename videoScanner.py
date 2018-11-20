@@ -1,3 +1,4 @@
+"""Main script"""
 import os
 import sys
 from models.files import FileHandeler
