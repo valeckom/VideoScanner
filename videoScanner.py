@@ -1,15 +1,15 @@
 """Main script"""
 import os
 import sys
-from models.files import FileHandeler
+from models.files import FileHandler
 from models.log import Logger
 
 args = sys.argv
 dir = args[1]
 log = Logger(dir)
-file_handeler = FileHandeler(dir)
 
 log.header()
+file_handeler = FileHandler(dir)
 
 for file in file_handeler.get_clean_list():
     log.note(file)

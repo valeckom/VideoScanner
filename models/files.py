@@ -3,7 +3,7 @@ import os
 from models.log import Logger
 
 
-class FileHandeler(object):
+class FileHandler(object):
     def __init__(self, directory):
         self.dir = directory
         self._check_valid_dir()
