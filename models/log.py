@@ -19,24 +19,24 @@ class Logger(object):
 
     def _write(self, content):
         print(content)
-        with open(self.file, "at") as f:
-            f.write('{}\n'.format(content))
+        with open(self.file, "a") as f:
+            f.write('{}\r\n'.format(content))
 
     def time_date_stamp(self):
         self.write(self._time_stamp())
 
     def header(self):
         self._setup_log()
-        msg = "Video Scanner v{}\n(c) Mark Valecko 2018".format(self.version)
+        msg = "Video Scanner v{}\r\n(c) Mark Valecko 2018".format(self.version)
         self._write(msg)
-        self._write("{}\n".format(self._time_stamp()))
+        self._write("{}\r\n".format(self._time_stamp()))
 
     def note(self, msg):
         msg = "({}) {}".format(self._short_time_stamp(), msg)
         self._write(msg)
 
     def end(self):
-        msg = "\nProcess completed at {}".format(self._short_time_stamp())
+        msg = "\r\nProcess completed at {}".format(self._short_time_stamp())
         self._write(msg)
         self._write('')
 
