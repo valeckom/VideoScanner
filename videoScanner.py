@@ -7,9 +7,9 @@ from models.log import Logger
 args = sys.argv
 dir = args[1]
 log = Logger(dir)
+file_handeler = FileHandeler(dir)
 
 log.header()
-file_handeler = FileHandeler(dir)
 
 for file in file_handeler.get_clean_list():
     log.note(file)

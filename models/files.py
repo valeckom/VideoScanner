@@ -6,10 +6,17 @@ from models.log import Logger
 class FileHandeler(object):
     def __init__(self, directory):
         self.dir = directory
+        self._check_valid_dir()
         self.files = []
         self.file_types = [".mp4", ".mov", ".vob", ".mkv"]
         self.log = Logger(self.dir)
         self.extrack_list_of_video_files()
+
+    def _check_valid_dir(self):
+        if self.dir.endswith('/'):
+            return
+        print("Error: Unexpected argument. A directory should end with a forward slash ('/')")
+        exit(1)
 
     def extrack_list_of_video_files(self):
         raw_files = os.listdir(self.dir)
