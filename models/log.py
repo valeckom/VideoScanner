@@ -9,19 +9,6 @@ class Logger(object):
         self.file = self.dir + self.file_name
         self.version = "0.1"
 
-    @staticmethod
-    def _time_stamp():
-        return '{:%Y-%m-%d %H:%M}'.format(datetime.now())
-
-    @staticmethod
-    def _short_time_stamp():
-        return '{:%H:%M}'.format(datetime.now())
-
-    def _write(self, content):
-        print(content)
-        with open(self.file, "a") as f:
-            f.write('{}\r\n'.format(content))
-
     def time_date_stamp(self):
         self.write(self._time_stamp())
 
@@ -39,6 +26,19 @@ class Logger(object):
         msg = "\r\nProcess completed at {}".format(self._short_time_stamp())
         self._write(msg)
         self._write('')
+
+    @staticmethod
+    def _time_stamp():
+        return '{:%Y-%m-%d %H:%M}'.format(datetime.now())
+
+    @staticmethod
+    def _short_time_stamp():
+        return '{:%H:%M}'.format(datetime.now())
+
+    def _write(self, content):
+        print(content)
+        with open(self.file, "a") as f:
+            f.write('{}\r\n'.format(content))
 
     def _setup_log(self):
         try:
