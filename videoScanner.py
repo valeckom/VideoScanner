@@ -1,3 +1,4 @@
+"""Main script"""
 import os
 import sys
 from models.files import FileHandeler
@@ -14,6 +15,7 @@ for file in file_handeler.get_clean_list():
     log.note(file)
 
     temp_file = file_handeler.make_py_compatable(file)
-    os.system("ffmpeg -v error -i {} -f null - 2>>{}".format(dir+temp_file, log.file_name))
+    args = dir+temp_file, log.file_name
+    os.system("ffmpeg -v error -i {} -f null - 2>>{}".format(*args))
 
 log.end()
