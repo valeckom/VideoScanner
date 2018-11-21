@@ -1,5 +1,6 @@
 """Handle all log file related functions"""
 from datetime import datetime
+from models.terminal import Terminal
 
 
 class Logger(object):
@@ -57,17 +58,3 @@ class Logger(object):
         with open(self.file, 'w') as f:
             pass
         self.terminal.write("created log file")
-
-
-class Terminal(object):
-    def __init__(self):
-        # self._verbose = self._verbose_is_active(option)
-        pass
-
-    # def _verbose_is_active(self, option):
-    #     if 'v' in option:
-    #         return True
-    #     return False
-
-    def write(self, msg):
-        print msg
