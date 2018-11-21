@@ -7,6 +7,7 @@ from models.sysArgv import SysArgv
 
 args = SysArgv(sys.argv)
 dir = args.get_dir()
+opt = args.get_options()
 log = Logger(dir)
 ffmpeg = Ffmpeg(dir)
 
@@ -15,6 +16,6 @@ file_handeler = FileHandler(dir)
 file_list = file_handeler.get_clean_list()
 
 for file in file_list:
-    ffmpeg.test(file)
+    ffmpeg.test(file, opt)
 
 log.end()

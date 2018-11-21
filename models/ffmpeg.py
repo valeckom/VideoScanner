@@ -8,7 +8,8 @@ class Ffmpeg(object):
         self._dir = directory
         self._log = Logger(self._dir)
 
-    def test(self, file):
+    def test(self, file, options):
+        opt = '' if options is None else options
         self._log.note(file)
         file_lbl = self._dir + file
 
@@ -19,6 +20,9 @@ class Ffmpeg(object):
             if line != '':
                 if not self._ignore_error(line):
                     self._log.error(line.rstrip())
+                    if not 'w' in opt:
+                        process.kill()
+                        break
             else:
                 break
 
