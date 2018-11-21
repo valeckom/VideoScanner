@@ -3,9 +3,10 @@ import sys
 from models.files import FileHandler
 from models.log import Logger
 from models.ffmpeg import Ffmpeg
+from models.sysArgv import SysArgv
 
-args = sys.argv
-dir = args[1]
+args = SysArgv(sys.argv)
+dir = args.get_dir()
 log = Logger(dir)
 ffmpeg = Ffmpeg(dir)
 
