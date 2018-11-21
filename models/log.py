@@ -6,7 +6,7 @@ class Logger(object):
     def __init__(self, directory):
         self.file_name = "video_scanner.log"
         self.file = directory + self.file_name
-        self.version = "0.1.1"
+        self.version = "0.2"
 
     def time_date_stamp(self):
         self.write(self._time_stamp())
@@ -18,11 +18,10 @@ class Logger(object):
         self._write("{}\r\n".format(self._time_stamp()))
 
     def note(self, msg):
-        # msg = "({}) {}".format(self._short_time_stamp(), msg)
         self._write(msg)
 
     def error(self, msg):
-        self._write("ERROR: "+ msg)
+        self._write("ERROR "+ msg)
 
     def end(self):
         msg = "\r\nProcess completed at {}".format(self._short_time_stamp())
