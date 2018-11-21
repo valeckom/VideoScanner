@@ -8,7 +8,7 @@ from models.sysArgv import SysArgv
 args = SysArgv(sys.argv)
 dir = args.get_dir()
 opt = args.get_options()
-log = Logger(dir)
+log = Logger(opt, dir)
 ffmpeg = Ffmpeg(dir)
 
 log.header()

@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 class Logger(object):
-    def __init__(self, directory):
+    def __init__(self, opt, directory):
         self.file_name = "video_scanner.log"
         self.file = directory + self.file_name
         self.version = "0.3"
@@ -56,3 +56,16 @@ class Logger(object):
         with open(self.file, 'w') as f:
             pass
         print "created log file"
+
+
+class Terminal(object):
+    def __init__(self, option):
+        # self._verbose = self._verbose_is_active(option)
+        pass
+
+    # def _verbose_is_active(self, option):
+    #     if 'v' in option:
+    #         return True
+    #     return False
+
+    def header(self):
