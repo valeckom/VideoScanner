@@ -24,8 +24,8 @@ class Logger(object):
     def error(self, msg):
         self._write("ERROR "+ msg)
 
-    def end(self):
-        msg = "\r\nProcess completed at {}".format(self._short_time_stamp())
+    def end(self, number_of_videos_scanned):
+        msg = "\r\n{} videos scanned at {}".format(number_of_videos_scanned, self._short_time_stamp())
         self._write(msg)
         self._write('')
 
