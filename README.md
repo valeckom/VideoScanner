@@ -25,7 +25,7 @@ COMMAND-LINE OPTIONS
 
         -w      scan the whole file. This will log all errors found in each video file
 
-        -n      scan (new) files; that have not been scanned previously
+        -v      increase terminal verbosity
 
 EXAMPLE USAGE
         $ python videoScanner.py ~/Desktop/videos/
