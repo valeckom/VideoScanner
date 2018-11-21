@@ -1,18 +1,14 @@
-from models.files import FileHandler
 import config
 from subprocess import Popen, PIPE
 
 
 class Ffmpeg(object):
-    def __init__(self, directory):
-        self._dir = directory
+    def __init__(self):
         self._process = None
-        self._opt = None
 
-    def test_file(self, file, options):
-        self._opt = '' if options is None else options
+    def test_file(self, file):
         config.log.note(file)
-        file_lbl = self._dir + file
+        file_lbl = config.dir + file
 
         args = ["ffmpeg", "-v", "error", "-i", file_lbl, "-f", "null", '-']
         self._process = Popen(args, stderr=PIPE)
@@ -33,7 +29,7 @@ class Ffmpeg(object):
         return True
 
     def _scan_whole_file_after_error(self):
-        if not 'w' in self._opt:
+        if not 'w' in config.command_options:
             self._process.kill()
             return False
         return True

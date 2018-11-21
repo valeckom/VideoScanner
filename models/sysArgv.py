@@ -10,4 +10,4 @@ class SysArgv(object):
         for arg in self._argv:
             if arg.startswith('-'):
                 return arg[1:]
-        return None
+        return ''
