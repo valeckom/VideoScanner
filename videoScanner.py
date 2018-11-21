@@ -16,6 +16,6 @@ file_handeler = FileHandler(dir)
 file_list = file_handeler.get_clean_list()
 
 for file in file_list:
-    ffmpeg.test(file, opt)
+    ffmpeg.test_file(file, opt)
 
 log.end()

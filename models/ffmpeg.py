@@ -7,29 +7,42 @@ class Ffmpeg(object):
     def __init__(self, directory):
         self._dir = directory
         self._log = Logger(self._dir)
+        self._process = None
+        self._opt = None
 
-    def test(self, file, options):
-        opt = '' if options is None else options
+    def test_file(self, file, options):
+        self._opt = '' if options is None else options
         self._log.note(file)
         file_lbl = self._dir + file
 
         args = ["ffmpeg", "-v", "error", "-i", file_lbl, "-f", "null", '-']
-        process = Popen(args, stderr=PIPE)
+        self._process = Popen(args, stderr=PIPE)
+        self._read_error_output()
+
+    def _read_error_output(self):
         while True:
-            line = process.stderr.readline()
-            if line != '':
-                if not self._ignore_error(line):
-                    self._log.error(line.rstrip())
-                    if not 'w' in opt:
-                        process.kill()
-                        break
-            else:
+            if self._end_of_errors():
                 break
 
-    def _ignore_error(self, error_output):
+    def _end_of_errors(self):
+        line = self._process.stderr.readline()
+        if line == '':
+            return True
+        if not self._valid_error(line) or self._scan_whole_file_after_error():
+            return False
+        return True
+
+    def _scan_whole_file_after_error(self):
+        if not 'w' in self._opt:
+            self._process.kill()
+            return False
+        return True
+
+    def _valid_error(self, error_output):
         allowed_errors = ["Application provided invalid, non monotonically increasing dts to muxer in stream",
-                            "place holder ZZZZZZ"]
+                            "place holder ZZZZZZZ"]
         for error in allowed_errors:
             if error in error_output:
-                return True
-        return False
+                return False
+        self._log.error(error_output.rstrip())
+        return True
