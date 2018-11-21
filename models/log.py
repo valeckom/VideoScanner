@@ -3,10 +3,11 @@ from datetime import datetime
 
 
 class Logger(object):
-    def __init__(self, opt, directory):
+    def __init__(self, directory):
         self.file_name = "video_scanner.log"
         self.file = directory + self.file_name
         self.version = "0.3"
+        self.terminal = Terminal()
 
     def time_date_stamp(self):
         self.write(self._time_stamp())
@@ -37,7 +38,7 @@ class Logger(object):
         return '{:%H:%M}'.format(datetime.now())
 
     def _write(self, content):
-        print content
+        self.terminal.write(content)
         with open(self.file, "a") as f:
             f.write('{}\r\n'.format(content))
 
@@ -50,16 +51,16 @@ class Logger(object):
     def _erase_log(self):
         with open(self.file, 'r+') as f:
             f.truncate(0) # need '0' when using r+
-        print "log erased"
+        self.terminal.write("log file erased")
 
     def _create_log(self):
         with open(self.file, 'w') as f:
             pass
-        print "created log file"
+        self.terminal.write("created log file")
 
 
 class Terminal(object):
-    def __init__(self, option):
+    def __init__(self):
         # self._verbose = self._verbose_is_active(option)
         pass
 
@@ -68,4 +69,5 @@ class Terminal(object):
     #         return True
     #     return False
 
-    def header(self):
+    def write(self, msg):
+        print msg
