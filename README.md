@@ -1,18 +1,54 @@
 # VideoScanner
 
-VideoScanner is a utility for checking the integrity of a video file.
+NAME
+        videoScanner.py - checks the integrity of video files in a directory
 
-dependencies:
-ffmpeg must be installed in order to function.
-install it using:
-$ apt install ffmpeg
+SYNOPSIS
+        python videoScanner.py [OPTION]... [DIRECTORY]...
 
+DEPENDENCIES
+        ffmpeg must be installed in order to function
+        install it using:
+        $ apt install ffmpeg
 
-Run videoScanner.py from the terminal.
+DESCRIPTION
+        Scan all video files in a directory. Log the first error in the video file.
 
+        -w      scan the whole file        
 
-Example:
-$ python videoScanner.py ~/Desktop/videos/
+    Exit status:
+        0       if OK
 
-this will scan all videos in the videos folder on the desktop. The results will
-be logged in the video_scanner.log file inside of the same folder.
+        1       if there is an input error
+
+    Example:
+        $ python videoScanner.py ~/Desktop/videos/
+
+        this will scan all videos in the videos folder on the desktop. The results will
+        be logged in the video_scanner.log file inside of the same folder.
+
+AUTHOR
+        Written by Mark Valecko
+
+COPYRIGHT
+        MIT License
+
+        Copyright (c) 2018 valeckom
+
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
