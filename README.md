@@ -24,8 +24,11 @@ COMMAND-LINE OPTIONS
         When the first error is found it is logged and the scanner moves onto the next file.
 
         -w      scan the whole file. This will log all errors found in each video file
+                (effects both log and terminal)
 
         -v      increase terminal verbosity
+
+        -p      displays minimal progress information in the terminal
 
 EXAMPLE USAGE
         $ python videoScanner.py ~/Desktop/videos/

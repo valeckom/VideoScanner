@@ -12,6 +12,19 @@ class Terminal(object):
             return True
         return False
 
-    def write(self, msg, ignore_verbose_lvl=False):
-        if ignore_verbose_lvl or self._verbose_is_active():
+    @staticmethod
+    def _progress_is_active():
+        if 'p' in config.command_options:
+            return True
+        return False
+
+    def write(self, msg, ignore_verbose_lvl=False, progress=False):
+        if ignore_verbose_lvl:
             print msg
+            return
+        if self._verbose_is_active():
+            print msg
+            return
+        if self._progress_is_active() and progress:
+            print msg
+            return

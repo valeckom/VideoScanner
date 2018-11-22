@@ -7,7 +7,6 @@ class Ffmpeg(object):
         self._process = None
 
     def test_file(self, file):
-        config.log.note(file)
         file_lbl = config.dir + file
 
         args = ["ffmpeg", "-v", "error", "-i", file_lbl, "-f", "null", '-']

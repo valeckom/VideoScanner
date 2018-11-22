@@ -22,8 +22,9 @@ class Logger(object):
     def note(self, msg):
         self._write(msg)
 
-    # def progress(self, msg):
-    #     self._write(msg)
+    def progress(self, position, list, file):
+        msg = "{} ({}/{}) {}".format(self._short_time_stamp(), len(list) - position, len(list), file)
+        self._write(msg, progress=True)
 
     def error(self, msg):
         self._write("ERROR "+ msg)
@@ -41,8 +42,8 @@ class Logger(object):
     def _short_time_stamp():
         return '{:%H:%M}'.format(datetime.now())
 
-    def _write(self, content, ignore_verbose_lvl=False):
-        self.terminal.write(content, ignore_verbose_lvl)
+    def _write(self, content, ignore_verbose_lvl=False, progress=False):
+        self.terminal.write(content, ignore_verbose_lvl, progress)
         with open(self.file, "a") as f:
             f.write('{}\r\n'.format(content))
 
