@@ -1,19 +1,13 @@
-from models.log import Logger
-from models.files import FileHandler
+import config
 from subprocess import Popen, PIPE
 
 
 class Ffmpeg(object):
-    def __init__(self, directory):
-        self._dir = directory
-        self._log = Logger(self._dir)
+    def __init__(self):
         self._process = None
-        self._opt = None
 
-    def test_file(self, file, options):
-        self._opt = '' if options is None else options
-        self._log.note(file)
-        file_lbl = self._dir + file
+    def test_file(self, file):
+        file_lbl = config.dir + file
 
         args = ["ffmpeg", "-v", "error", "-i", file_lbl, "-f", "null", '-']
         self._process = Popen(args, stderr=PIPE)
@@ -22,6 +16,7 @@ class Ffmpeg(object):
     def _read_error_output(self):
         while True:
             if self._end_of_errors():
+                config.number_of_files_scanned + 1
                 break
 
     def _end_of_errors(self):
@@ -33,7 +28,7 @@ class Ffmpeg(object):
         return True
 
     def _scan_whole_file_after_error(self):
-        if not 'w' in self._opt:
+        if not 'w' in config.command_options:
             self._process.kill()
             return False
         return True
@@ -44,5 +39,5 @@ class Ffmpeg(object):
         for error in allowed_errors:
             if error in error_output:
                 return False
-        self._log.error(error_output.rstrip())
+        config.log.error(error_output.rstrip())
         return True

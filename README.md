@@ -4,7 +4,7 @@ NAME
         videoScanner.py - checks the integrity of video files in a directory
 
 SYNOPSIS
-        python videoScanner.py [OPTION]... [DIRECTORY]...
+        python videoScanner.py [OPTION] [DIRECTORY]
 
 DEPENDENCIES
         ffmpeg must be installed in order to function
@@ -12,20 +12,32 @@ DEPENDENCIES
         $ apt install ffmpeg
 
 DESCRIPTION
-        Scan all video files in a directory. Log the first error in the video file.
-
-        -w      scan the whole file        
+        Scan all video files in a directory. Log the first error in the video file.       
 
     Exit status:
         0       if OK
 
         1       if there is an input error
 
-    Example:
-        $ python videoScanner.py ~/Desktop/videos/
+COMMAND-LINE OPTIONS
+        The default behavior of videoScanner will scan all video files within a directory.
+        When the first error is found it is logged and the scanner moves onto the next file.
 
-        this will scan all videos in the videos folder on the desktop. The results will
-        be logged in the video_scanner.log file inside of the same folder.
+        -w      scan the whole file. This will log all errors found in each video file
+                (effects both log and terminal)
+
+        -v      increase terminal verbosity
+
+        -p      displays minimal progress information in the terminal
+
+EXAMPLE USAGE
+        $ python videoScanner.py ~/Desktop/videos/
+                Scan all videos in the videos folder on the desktop. The results will
+                be logged in the video_scanner.log file inside of the same folder.
+
+        $ python videoScanner.py -w ~/Desktop/videos/
+                Scan all videos in the videos folder on the desktop. The results will
+                be logged in the video_scanner.log file inside of the same folder.
 
 AUTHOR
         Written by Mark Valecko
