@@ -36,7 +36,7 @@ class FileHandler(object):
         exit(1)
 
     def _file_has_known_extension(self, file):
-        file_types = [".mp4", ".mov", ".vob", ".mkv"]
+        file_types = [".mp4", ".mov", ".vob", ".mkv", ".VOB"]
         for file_type in file_types:
             if file.endswith(file_type):
                 return True

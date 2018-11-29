@@ -35,7 +35,7 @@ class Ffmpeg(object):
 
     def _valid_error(self, error_output):
         allowed_errors = ["Application provided invalid, non monotonically increasing dts to muxer in stream",
-                            "place holder ZZZZZZZ"]
+                            "ignoring pic cod ext after"]
         for error in allowed_errors:
             if error in error_output:
                 return False

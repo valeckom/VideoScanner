@@ -7,7 +7,7 @@ class Logger(object):
     def __init__(self, directory):
         self.file_name = "video_scanner.log"
         self.file = directory + self.file_name
-        self.version = "0.3"
+        self.version = "0.3.1"
         self.terminal = Terminal()
 
     def time_date_stamp(self):
